@@ -130,9 +130,12 @@ ReShade Setup ve Feeder bileşenleri. Bu klasör depoda yok, kendiniz temin etme
 uygulama açılır ve oyunlarınızı listeler ama kurulum yapamaz. `npm run build:linux` için de gerekli.
 Ayrıntı için `scripts/collect-payload.js`.
 
-> Linux tarafının hiçbiri kurulu gerçek bir oyunla denenmedi. Dosya konumları ve her başlatıcının
-> kullandığı ortam, Heroic ve Lutris'in kendi dağıtılan kodundan okundu ve davranış test paketiyle
-> kapsandı; yine de denenmemiş kabul edin ve yedeklerinizi saklayın.
+> Gerçek bir Steam Play oyununda kısmen denendi. Çalışanlar: kütüphane oyunu buluyor, süreç
+> denetimi `/proc`'u okuyor ve ReShade Setup oyunun kendi Proton prefix'i içinde çalışıp add-on
+> destekli bir `dxgi.dll` (6.8.0) bırakıyor — uygulamanın kendi tarayıcısı da bunu kabul ediyor.
+> Denenmeyenler: payload gerektiren DLSS değişimi ve geri yükleme; dosya konumları kendi dağıtılan
+> kodlarından okunan ama kurulu bir oyunla sınanmayan Heroic ve Lutris; ve RTX 50 isteyen OptiScaler
+> rotası. Yedeklerinizi saklayın.
 
 ## Emülatörler
 
