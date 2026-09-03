@@ -91,7 +91,8 @@ Ayarlar'dan klasörleri elle ekleyin.
 
 **Çalışanlar**
 
-- DLSS çalışma zamanının değiştirilmesi ve Vulkan yolu dahil OptiScaler rotası.
+- Zaten DLSS taşıyan bir oyunda DLSS çalışma zamanının değiştirilmesi ve Vulkan yolu dahil
+  OptiScaler rotası.
 - ReShade Setup, oyunun zaten kullandığı prefix içinde çalıştırılıyor — Steam Play prefix'i ya da
   Heroic veya Lutris'in oyun için oluşturduğu Wine prefix'i. Kuruluma bu adım hiç gelmiyorsa prefix
   de gerekmiyor.
@@ -99,15 +100,19 @@ Ayarlar'dan klasörleri elle ekleyin.
 
 **Çalışmayanlar**
 
-- **Feeder üzerinden Vulkan.** ReShade'i bir Windows implicit layer olarak kaydediyor ve Linux'ta
-  bunu yükleyen hiçbir şey yok: Wine katman sayımını host Vulkan loader'ına devrediyor, o da `.so`
-  katmanları yüklüyor, Windows ReShade DLL'ini asla yüklemiyor. Vulkan için OptiScaler rotasını
-  kullanın.
+- **Feeder rotası**, tamamen reddediliyor. Oyun yerine launcher'ı yamalıyor ve Proton oyunlarını
+  açılamaz hâle getiriyordu — bunu Linux derlemeleri yayımlayıp bozulduklarını gören
+  [Febsho](https://github.com/Febsho/DLSS5-Swapper-Linux) buldu. Vulkan zaten buraya hiç
+  ulaşamıyordu: Feeder ReShade'i Windows implicit layer olarak kaydediyor, Wine ise katman sayımını
+  host Vulkan loader'ına devrediyor, o da `.so` katmanları yüklüyor, Windows ReShade DLL'ini asla
+  yüklemiyor. Native DLSS kullanın, Vulkan için de OptiScaler.
+- **Non-addon ReShade taşıyan oyunlar.** Mevcut proxy başka bir moda ya da loader'a ait olabilir ve
+  onu değiştirmek sağlam oyunları çökertiyordu. Aynı kaynak.
 - **Proton runner'ı kullanan Lutris oyunları** (umu üzerinden başlatılıyor) ve **Heroic CrossOver
   bottle'ları**. İkisi de bulunuyor ve düz DLL değişimini yapabiliyor; yalnızca ReShade Setup adımı
   kullanılamıyor.
 - **Emülatörler**, pratikte. Linux'ta gerçekten kullanılan derlemeler native; Wine altında
-  çalışabilecek Windows derlemeleri ise DLSS'e Vulkan üzerinden ulaşıyor, o da yukarıdaki madde.
+  çalışabilecek Windows derlemeleri ise Feeder'dan geçiyor, o da yukarıda reddediliyor.
 - OptiScaler'ın GPU denetimi NVIDIA sürücüsünü bir Windows sürüm numarasıyla karşılaştırıyor, oysa
   Linux sürücüsü aynı numaralandırmayı kullanmıyor. Bu eşik, gerçek DLSS 5 gereksinimine karşı
   doğrulanmadı.
