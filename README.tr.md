@@ -83,7 +83,7 @@ yükünü yükleyemeyeceği için atlanır.
 | Başlatıcı | Notlar |
 | --- | --- |
 | **Steam Play** | Hem normal hem Flatpak kurulumu. Oyunun kendi `compatdata` prefix'i kullanılır |
-| **Heroic** | Epic, GOG, Amazon ve elle eklenen oyunlar; normal ve Flatpak |
+| **Heroic** | Epic, GOG, Amazon ve elle eklenen oyunlar; normal ve Flatpak. Ayrı bir kurulum olarak listelenen bir DLC (Cyberpunk 2077'nin REDmod'u, bu şekilde bulundu) ana oyunla karıştırılmadan atlanıyor |
 | **Lutris** | Wine oyunları; normal ve Flatpak |
 
 Tüm sürücüleri tarama burada hiçbir şey bulmaz — Windows sürücü harflerini sayar. Bunun yerine
@@ -120,7 +120,13 @@ Ayarlar'dan klasörleri elle ekleyin.
   temiz açılışta da `inline feature 18 evaluation succeeded`. Bu dosyanın önceki bir sürümünün
   "çalışıyor" demesinin sebebi buydu. Çalışmıyor; o iddia ekrana değil loga bakılarak yazılmıştı.
 - **Kapatıp açmak** bir kez de oyunu çökertti:
-  `EXCEPTION_ACCESS_VIOLATION reading address 0xffffffffffffffff`.
+  `EXCEPTION_ACCESS_VIOLATION reading address 0xffffffffffffffff`. Aynı adres, tamamen farklı bir
+  Proton build'inde çalışan ikinci ve alakasız bir oyunu (Cyberpunk 2077) da çökertti — burada
+  toggle'da değil, Neural Rendering feature'ı ilk kez oluşturulurken. Her iki çökme raporu da
+  logdaki o feature'ı kuran thread'i işaret ediyor, ve her ikisinde de oyunun kendi çökme
+  raporlayıcısı ReShade'ten bağımsız olarak devreye girdi — bu da motora ya da build'e özgü bir
+  tuhaflık değil, add-on'un Proton altındaki feature yaşam döngüsünde tek bir hata olduğunu
+  gösteriyor.
 - OptiScaler'ın GPU denetimi NVIDIA sürücüsünü bir Windows sürüm numarasıyla karşılaştırıyor, oysa
   Linux sürücüsü aynı numaralandırmayı kullanmıyor. Bu eşik, gerçek DLSS 5 gereksinimine karşı
   doğrulanmadı.
