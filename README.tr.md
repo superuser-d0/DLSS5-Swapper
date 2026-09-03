@@ -92,8 +92,8 @@ Ayarlar'dan klasörleri elle ekleyin.
 **Çalışanlar**
 
 - Zaten DLSS taşıyan bir oyunda DLSS çalışma zamanının değiştirilmesi ve Vulkan yolu dahil
-  OptiScaler rotası. Neural Rendering'in bu şekilde çalıştığı görüldü: gerçek bir Proton
-  oyununda `inline feature 18 evaluation succeeded ... 2560x1440 [native]`, kare kare.
+  OptiScaler rotası — kurulum olarak. Neural Rendering'in ardından doğru render edip etmediği ayrı
+  bir soru, aşağıda cevaplanıyor.
 - ReShade Setup, oyunun zaten kullandığı prefix içinde çalıştırılıyor — Steam Play prefix'i ya da
   Heroic veya Lutris'in oyun için oluşturduğu Wine prefix'i. Kuruluma bu adım hiç gelmiyorsa prefix
   de gerekmiyor.
@@ -114,9 +114,13 @@ Ayarlar'dan klasörleri elle ekleyin.
   kullanılamıyor.
 - **Emülatörler**, pratikte. Linux'ta gerçekten kullanılan derlemeler native; Wine altında
   çalışabilecek Windows derlemeleri ise Feeder'dan geçiyor, o da yukarıda reddediliyor.
-- **Neural Rendering'i overlay'den kapatıp açmak**, birkaç saniye sonra oyunu çökertiyor:
-  `EXCEPTION_ACCESS_VIOLATION reading address 0xffffffffffffffff`. Neural Rendering'in kendisi
-  stabil, sorun yıkım yolunda. Açık bırakın — zaten varsayılan olarak açık.
+- **Neural Rendering'in kendisi, görsel olarak.** Başlıyor, feature'ını oluşturuyor ve gerçek kare
+  süresi harcıyor — aynı menü kapalıyken 129 fps, açıkken 54 — ama çizdiği şey siyah. Sahne
+  kayboluyor. Log bunun yalnızca hoşa giden yarısını anlatıyor: her toggle'da `feature 18 created`,
+  temiz açılışta da `inline feature 18 evaluation succeeded`. Bu dosyanın önceki bir sürümünün
+  "çalışıyor" demesinin sebebi buydu. Çalışmıyor; o iddia ekrana değil loga bakılarak yazılmıştı.
+- **Kapatıp açmak** bir kez de oyunu çökertti:
+  `EXCEPTION_ACCESS_VIOLATION reading address 0xffffffffffffffff`.
 - OptiScaler'ın GPU denetimi NVIDIA sürücüsünü bir Windows sürüm numarasıyla karşılaştırıyor, oysa
   Linux sürücüsü aynı numaralandırmayı kullanmıyor. Bu eşik, gerçek DLSS 5 gereksinimine karşı
   doğrulanmadı.
@@ -133,7 +137,8 @@ protontricks <appid> d3dcompiler_47
 ```
 
 Onsuz log `proxy encode compilation failed ... Function "isnan" is not defined` ile doluyor; onunla
-bu hata tamamen kayboluyor.
+bu hata tamamen kayboluyor. Neural Rendering sonrasında doğru render etmese de bu adım yine de
+gerekli — onsuz hiçbir şey olmuyor.
 
 **Çalıştırmak**
 
