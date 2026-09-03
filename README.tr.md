@@ -92,7 +92,8 @@ Ayarlar'dan klasörleri elle ekleyin.
 **Çalışanlar**
 
 - Zaten DLSS taşıyan bir oyunda DLSS çalışma zamanının değiştirilmesi ve Vulkan yolu dahil
-  OptiScaler rotası.
+  OptiScaler rotası. Neural Rendering'in bu şekilde çalıştığı görüldü: gerçek bir Proton
+  oyununda `inline feature 18 evaluation succeeded ... 2560x1440 [native]`, kare kare.
 - ReShade Setup, oyunun zaten kullandığı prefix içinde çalıştırılıyor — Steam Play prefix'i ya da
   Heroic veya Lutris'in oyun için oluşturduğu Wine prefix'i. Kuruluma bu adım hiç gelmiyorsa prefix
   de gerekmiyor.
@@ -113,9 +114,26 @@ Ayarlar'dan klasörleri elle ekleyin.
   kullanılamıyor.
 - **Emülatörler**, pratikte. Linux'ta gerçekten kullanılan derlemeler native; Wine altında
   çalışabilecek Windows derlemeleri ise Feeder'dan geçiyor, o da yukarıda reddediliyor.
+- **Neural Rendering'i overlay'den kapatıp açmak**, birkaç saniye sonra oyunu çökertiyor:
+  `EXCEPTION_ACCESS_VIOLATION reading address 0xffffffffffffffff`. Neural Rendering'in kendisi
+  stabil, sorun yıkım yolunda. Açık bırakın — zaten varsayılan olarak açık.
 - OptiScaler'ın GPU denetimi NVIDIA sürücüsünü bir Windows sürüm numarasıyla karşılaştırıyor, oysa
   Linux sürücüsü aynı numaralandırmayı kullanmıyor. Bu eşik, gerçek DLSS 5 gereksinimine karşı
   doğrulanmadı.
+
+**Proton'un önce ihtiyaç duyduğu tek şey**
+
+Add-on çalışma anında bir shader derliyor ve Wine'ın `d3dcompiler_47`'si — 370 KB, arkasında
+vkd3d'nin eksik HLSL derleyicisi — `isnan` uygulamıyor; derleme başarısız oluyor ve Neural
+Rendering hiç başlamıyor. Microsoft'un 4 MB'lık kendi DLL'inde bu var. Oyunun prefix'ine bir kez
+kurun:
+
+```bash
+protontricks <appid> d3dcompiler_47
+```
+
+Onsuz log `proxy encode compilation failed ... Function "isnan" is not defined` ile doluyor; onunla
+bu hata tamamen kayboluyor.
 
 **Çalıştırmak**
 
