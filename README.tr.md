@@ -137,8 +137,11 @@ Ayrıntı için `scripts/collect-payload.js`.
 > ekliyor, ReShade Setup oyunun kendi Proton prefix'i içinde çalışıp add-on destekli bir `dxgi.dll`
 > (6.8.0) bırakıyor, geri yükleme ise on bir dosyanın tamamını bayt bayt eski hâline döndürüp
 > eklediği her şeyi siliyor. Bunun gösteremediği şey, NVIDIA'nın kendi çalışma zamanının takas
-> sonrası çalışıp çalışmadığı: vekiller geçerli PE dosyaları, fazlası değil. Heroic ve Lutris hâlâ
-> kurulu bir oyunla sınanmadı, OptiScaler rotası da RTX 50 istiyor. Yedeklerinizi saklayın.
+> sonrası çalışıp çalışmadığı: vekiller geçerli PE dosyaları, fazlası değil. Heroic de aynı şekilde
+> sınandı: okuyucu Epic oyununu buluyor, prefix'ini ve wine yapısını Heroic'in kendi ayarlarından
+> çözüyor ve ReShade Setup o prefix'in içinde de çalışıyor — Heroic bu oyun için düz Wine yerine
+> Proton seçtiğinden o dal da denenmiş oldu. Lutris hâlâ kurulu bir oyunla sınanmadı, OptiScaler
+> rotası da RTX 50 istiyor. Yedeklerinizi saklayın.
 
 ## Emülatörler
 
@@ -186,7 +189,7 @@ Uyumluluk renderer'a ve oyuna göre değişir. Xenia HUD düzeltmesi hâlâ dene
 - **Hile önleme (anti-cheat):** kırmızı uyarı ve isteğe bağlı onay verilir, toptan engelleme yapılmaz. Enjeksiyon çökmelere ya da hesap yasaklarına yol açabilir; uygulama hile önleme sistemlerini asla atlatmaz.
 - **Gereksinimler:** Feeder, Visual C++ çalışma zamanlarına ihtiyaç duyar (x64, 32 bit oyunlar için ayrıca x86). Bazı bileşenler ilk kullanımda indirilir.
 - **Uyumluluk garanti edilmez.** Yedek alın; mevcut modlar çakışabilir. Bildirilen her oyun çökmesi düzeltilmiş değildir.
-- **Linux/Proton:** yalnızca kaynak koddan ve gerçek bir oyunla denenmemiş durumda — bkz. [Linux](#linux).
+- **Linux/Proton:** yalnızca kaynak koddan ve gerçek DLSS çalışma zamanı yerine vekil DLL'lerle denenmiş durumda — bkz. [Linux](#linux).
 
 ---
 
