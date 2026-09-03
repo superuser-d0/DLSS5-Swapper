@@ -130,12 +130,15 @@ ReShade Setup ve Feeder bileşenleri. Bu klasör depoda yok, kendiniz temin etme
 uygulama açılır ve oyunlarınızı listeler ama kurulum yapamaz. `npm run build:linux` için de gerekli.
 Ayrıntı için `scripts/collect-payload.js`.
 
-> Gerçek bir Steam Play oyununda kısmen denendi. Çalışanlar: kütüphane oyunu buluyor, süreç
-> denetimi `/proc`'u okuyor ve ReShade Setup oyunun kendi Proton prefix'i içinde çalışıp add-on
-> destekli bir `dxgi.dll` (6.8.0) bırakıyor — uygulamanın kendi tarayıcısı da bunu kabul ediyor.
-> Denenmeyenler: payload gerektiren DLSS değişimi ve geri yükleme; dosya konumları kendi dağıtılan
-> kodlarından okunan ama kurulu bir oyunla sınanmayan Heroic ve Lutris; ve RTX 50 isteyen OptiScaler
-> rotası. Yedeklerinizi saklayın.
+> Gerçek bir Steam Play oyununda denendi — dosyalarının bir kopyası üzerinde ve DLSS çalışma
+> zamanının yerine bu deponun taşıyamayacağı için vekil DLL'ler konarak. Kurulum ve geri yükleme
+> baştan sona koştu: kütüphane oyunu buluyor, süreç denetimi `/proc`'u okuyor, kurucu oyunun
+> `nvngx_dlss.dll`'ini yedekleyip değiştiriyor, çalışma zamanını, add-on'u ve hook'u exe'nin yanına
+> ekliyor, ReShade Setup oyunun kendi Proton prefix'i içinde çalışıp add-on destekli bir `dxgi.dll`
+> (6.8.0) bırakıyor, geri yükleme ise on bir dosyanın tamamını bayt bayt eski hâline döndürüp
+> eklediği her şeyi siliyor. Bunun gösteremediği şey, NVIDIA'nın kendi çalışma zamanının takas
+> sonrası çalışıp çalışmadığı: vekiller geçerli PE dosyaları, fazlası değil. Heroic ve Lutris hâlâ
+> kurulu bir oyunla sınanmadı, OptiScaler rotası da RTX 50 istiyor. Yedeklerinizi saklayın.
 
 ## Emülatörler
 
